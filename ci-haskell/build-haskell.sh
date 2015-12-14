@@ -1,7 +1,17 @@
 #!/bin/bash
 
-echo "running build command: $1"
+command=$1
 
-ls -l $BUILD_DIR
+if [ "$command" = "" ]; then
+  >&2 echo "a build command is required"
+  exit 1
+fi
+
+echo "running '$1' in '$BUILD_DIR'"
+
+cd $BUILD_DIR
+stack $command
+
+
 
 
