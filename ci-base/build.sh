@@ -2,6 +2,4 @@
 
 here=$(dirname $(readlink -f $0))
 
-docker build -t aztecrex/ci-haskell .
-
-
+docker build -t aztecrex/ci-base $here
