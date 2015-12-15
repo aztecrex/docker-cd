@@ -1,0 +1,10 @@
+#!/bin/bash
+
+for ((i=0;i<=18;++i)); do
+  cp -a ./model3plus ./e$i
+  sed "s/RESOLVERHERE/lts-3.$i/" --in-place ./e$i/stack.yaml
+  pushd ./e$i
+  stack setup
+  stack test
+  popd
+done

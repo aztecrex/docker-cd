@@ -20,7 +20,11 @@ RUN  apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 575159689
 # Stack warmup
 WORKDIR /
 COPY warmups /tmp/warmups
-RUN  for d in /tmp/warmups/env*; do cd $d; stack setup && stack build;  cd; done \
+RUN  cd /tmp/warmups \
+  && chmod +x go \
+  && sync \
+  && ./go \
+  && cd \
   && find /tmp/warmups -delete
 
 # build setup
