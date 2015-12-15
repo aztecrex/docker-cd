@@ -29,13 +29,15 @@ RUN  cd /tmp/warmups \
 
 # build setup
 WORKDIR /
-COPY build-haskell.sh /
-RUN  chmod +x /build-haskell.sh \
+COPY entrypoint.sh /
+RUN  chmod +x /entrypoint.sh \
   && mkdir -p /build
 VOLUME /build
 ENV BUILD_DIR=/build
 
 
 # let's go
-ENTRYPOINT ["/build-haskell.sh"]
-CMD ["test"]
+ENTRYPOINT ["/entrypoint.sh"]
+CMD ["shell"]
+
+
